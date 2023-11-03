@@ -13,6 +13,7 @@ public class Hike implements Serializable {
     private String description;
     private String weatherCondition; // Custom field 1
     private String terrainType; // Custom field 2
+    private  String hikeUser;
 
     // All getter and setter methods
     public int getId() {
@@ -94,8 +95,14 @@ public class Hike implements Serializable {
     public void setTerrainType(String terrainType) {
         this.terrainType = terrainType;
     }
+    public String getHikeUser() {
+        return hikeUser;
+    }
 
-    public Hike(int id, String name, String location, String date, String parkingAvailable, String length, String difficulty, String description, String weatherCondition, String terrainType) {
+    public void setHikeUser(String hikeUser) {
+        this.hikeUser = hikeUser;
+    }
+    public Hike(int id, String name, String location, String date, String parkingAvailable, String length, String difficulty, String description, String weatherCondition, String terrainType, String hikeUser) {
         this.id = id;
         this.name = name;
         this.location = location;
@@ -106,9 +113,10 @@ public class Hike implements Serializable {
         this.description = description;
         this.weatherCondition = weatherCondition;
         this.terrainType = terrainType;
+        this.hikeUser = hikeUser;
     }
 
-    public Hike(String name, String location, String date, String parkingAvailable, String length, String difficulty, String description, String weatherCondition, String terrainType) {
+    public Hike(String name, String location, String date, String parkingAvailable, String length, String difficulty, String description, String weatherCondition, String terrainType, String hikeUser) {
         this.name = name;
         this.location = location;
         this.date = date;
@@ -118,6 +126,7 @@ public class Hike implements Serializable {
         this.description = description;
         this.weatherCondition = weatherCondition;
         this.terrainType = terrainType;
+        this.hikeUser = hikeUser;
     }
 
     public Hike() {

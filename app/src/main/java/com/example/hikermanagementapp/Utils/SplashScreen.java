@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.hikermanagementapp.Authentication.LoginActivity;
+import com.example.hikermanagementapp.Hike.AddHikeActivity;
+import com.example.hikermanagementapp.Hike.HikeActivity;
 import com.example.hikermanagementapp.R;
 
 public class SplashScreen extends AppCompatActivity {

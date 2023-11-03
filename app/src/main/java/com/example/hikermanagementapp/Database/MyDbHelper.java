@@ -1,5 +1,6 @@
 package com.example.hikermanagementapp.Database;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -28,6 +29,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
     private static final String COLUMN_HIKE_DESCRIPTION = "description";
     private static final String COLUMN_HIKE_WEATHER = "weather";
     private static final String COLUMN_HIKE_TERRAIN = "terrain";
+    private static final String COLUMN_HIKE_USER = "hikeUser";
 
     // Observation table
     private static final String TABLE_OBSERVATION = "observation";
@@ -35,6 +37,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
     private static final String COLUMN_OBSERVATION_TEXT = "observationName";
     private static final String COLUMN_OBSERVATION_TIME = "time";
     private static final String COLUMN_OBSERVATION_COMMENTS = "comments";
+    private static final String COLUMN_OBSERVATION_IMAGE = "observationImage";
     private static final String COLUMN_OBSERVATION_HIKE_ID = "hikeId";
 
     // User table
@@ -96,7 +99,8 @@ public class MyDbHelper extends SQLiteOpenHelper {
                 COLUMN_HIKE_DIFFICULTY + " TEXT, " +
                 COLUMN_HIKE_DESCRIPTION + " TEXT, " +
                 COLUMN_HIKE_WEATHER + " TEXT, " +
-                COLUMN_HIKE_TERRAIN + " TEXT);";
+                COLUMN_HIKE_TERRAIN + " TEXT, " +
+                COLUMN_HIKE_USER + " TEXT);";
         db.execSQL(query);
     }
 
@@ -106,6 +110,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
                 COLUMN_OBSERVATION_TEXT + " TEXT, " +
                 COLUMN_OBSERVATION_TIME + " TEXT, " +
                 COLUMN_OBSERVATION_COMMENTS + " TEXT, " +
+                COLUMN_OBSERVATION_IMAGE + " TEXT, " + // the image will be stored as a URL string
                 COLUMN_OBSERVATION_HIKE_ID + " INTEGER, " +
                 "FOREIGN KEY(" + COLUMN_OBSERVATION_HIKE_ID + ") REFERENCES " + TABLE_HIKE + "(" + COLUMN_HIKE_ID + "));";
         db.execSQL(query);
@@ -124,6 +129,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
         values.put(COLUMN_HIKE_DESCRIPTION, hike.getDescription());
         values.put(COLUMN_HIKE_WEATHER, hike.getWeatherCondition());
         values.put(COLUMN_HIKE_TERRAIN, hike.getTerrainType());
+        values.put(COLUMN_HIKE_USER, hike.getHikeUser());
         return db.insert(TABLE_HIKE, null, values);
     }
 
@@ -139,18 +145,20 @@ public class MyDbHelper extends SQLiteOpenHelper {
         values.put(COLUMN_HIKE_DESCRIPTION, hike.getDescription());
         values.put(COLUMN_HIKE_WEATHER, hike.getWeatherCondition());
         values.put(COLUMN_HIKE_TERRAIN, hike.getTerrainType());
+        values.put(COLUMN_HIKE_USER, hike.getHikeUser());
         return db.update(TABLE_HIKE, values, COLUMN_HIKE_ID + "=?", new String[]{String.valueOf(hike.getId())});
     }
 
-    public void deleteHike(int id) {
+    public boolean deleteHike(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_HIKE, COLUMN_HIKE_ID + "=?", new String[]{String.valueOf(id)});
+        int rowsAffected = db.delete(TABLE_HIKE, COLUMN_HIKE_ID + "=?", new String[]{String.valueOf(id)});
+        return rowsAffected > 0;
     }
 
-    public List<Hike> getAllHikes() {
+    public List<Hike> getAllHikes(String hikeUser) {
         List<Hike> hikes = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_HIKE, null);
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_HIKE + " WHERE " + COLUMN_HIKE_USER + " = ?", new String[]{hikeUser});
         if (cursor.moveToFirst()) {
             do {
                 Hike hike = new Hike();
@@ -164,6 +172,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
                 hike.setDescription(cursor.getString(7));
                 hike.setWeatherCondition(cursor.getString(8));
                 hike.setTerrainType(cursor.getString(9));
+                hike.setHikeUser(cursor.getString(10));
                 hikes.add(hike);
             } while (cursor.moveToNext());
         }
@@ -177,6 +186,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
         values.put(COLUMN_OBSERVATION_TEXT, observation.getObservationName());
         values.put(COLUMN_OBSERVATION_TIME, observation.getTime());
         values.put(COLUMN_OBSERVATION_COMMENTS, observation.getComments());
+        values.put(COLUMN_OBSERVATION_IMAGE, observation.getObservationImage());
         values.put(COLUMN_OBSERVATION_HIKE_ID, observation.getHikeId());
         return db.insert(TABLE_OBSERVATION, null, values);
     }
@@ -187,19 +197,21 @@ public class MyDbHelper extends SQLiteOpenHelper {
         values.put(COLUMN_OBSERVATION_TEXT, observation.getObservationName());
         values.put(COLUMN_OBSERVATION_TIME, observation.getTime());
         values.put(COLUMN_OBSERVATION_COMMENTS, observation.getComments());
+        values.put(COLUMN_OBSERVATION_IMAGE, observation.getObservationImage());
         values.put(COLUMN_OBSERVATION_HIKE_ID, observation.getHikeId());
         return db.update(TABLE_OBSERVATION, values, COLUMN_OBSERVATION_ID + "=?", new String[]{String.valueOf(observation.getId())});
     }
 
-    public void deleteObservation(int id) {
+    public boolean deleteObservation(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_OBSERVATION, COLUMN_OBSERVATION_ID + "=?", new String[]{String.valueOf(id)});
+        int rowsAffected = db.delete(TABLE_OBSERVATION, COLUMN_OBSERVATION_ID + "=?", new String[]{String.valueOf(id)});
+        return rowsAffected > 0;
     }
 
-    public List<Observation> getAllObservations() {
+    public List<Observation> getAllObservations(int hikeId) {
         List<Observation> observations = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_OBSERVATION, null);
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_OBSERVATION + " WHERE " + COLUMN_OBSERVATION_HIKE_ID + " = ?", new String[]{String.valueOf(hikeId)});
         if (cursor.moveToFirst()) {
             do {
                 Observation observation = new Observation();
@@ -207,14 +219,30 @@ public class MyDbHelper extends SQLiteOpenHelper {
                 observation.setObservationName(cursor.getString(1));
                 observation.setTime(cursor.getString(2));
                 observation.setComments(cursor.getString(3));
-                observation.setHikeId(cursor.getInt(4));
+                observation.setObservationImage(cursor.getString(4));
+                observation.setHikeId(cursor.getInt(5));
                 observations.add(observation);
             } while (cursor.moveToNext());
         }
         cursor.close();
         return observations;
     }
+    public Boolean checkUserPass(String user, String pass) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        @SuppressLint("Recycle") Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_USER + " WHERE " + COLUMN_USERNAME + " = ? AND " + COLUMN_PASSWORD + " = ?", new String[]{user, pass});
+        return cursor.getCount() > 0;
+    }
+    public void deleteAllHike() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM " + TABLE_HIKE); // delete all rows in a table
+        db.execSQL("DELETE FROM " + TABLE_OBSERVATION); // delete all rows in a table
+    }
 
+    public void deleteAllObservation() {
+        // delete all data of Observation table
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM " + TABLE_OBSERVATION);
+    }
     public Context getContext() {
         return context;
     }

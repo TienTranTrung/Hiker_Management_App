@@ -12,6 +12,7 @@
     <color name="yellow">#FFF59B</color>
     <color name="item">#FFE500</color>
     <color name="text">#FFC30F</color>
+    <color name="colorSecondary"> #87CEEB</color>
     <color name="colorPrimary">#354E73</color>
     <color name="colorPrimaryDark">#004AAD</color>
 </resources>

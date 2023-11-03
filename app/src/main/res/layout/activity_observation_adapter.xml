@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/observationLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        app:cardCornerRadius="10dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimaryDark"
+            android:padding="12dp">
+
+
+            <ImageView
+                android:id="@+id/editObservation"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="143dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="5dp"
+                android:src="@drawable/edit_svg"
+
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+                app:layout_constraintEnd_toStartOf="@+id/deleteObservation"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <ImageView
+                android:id="@+id/deleteObservation"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/delete_svg"
+                app:layout_constraintBottom_toBottomOf="@+id/editObservation"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/editObservation" />
+
+
+            <LinearLayout
+                android:id="@+id/linearLayout1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toStartOf="@+id/editObservation"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="35dp"
+                    android:layout_marginEnd="15dp"
+                    android:src="@drawable/ic_hiker" />
+
+                <TextView
+                    android:id="@+id/observationName"
+                    android:layout_width="162dp"
+                    android:layout_height="wrap_content"
+                    android:text="Observation Name"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="@+id/linearLayout1"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout1">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginEnd="15dp"
+                    android:src="@drawable/calendar_svg" />
+
+                <TextView
+                    android:id="@+id/observationDate"
+                    android:layout_width="106dp"
+                    android:layout_height="wrap_content"
+                    android:text="Oct 16, 2022 "
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

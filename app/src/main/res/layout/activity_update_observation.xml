@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:padding="30dp"
+        tools:context=".Observation.UpdateObservationActivity">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Update Observation"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="38dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutObservationName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edit_text"
+            android:hint="Name"
+            android:textColorHint="@color/black"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:startIconDrawable="@drawable/ic_add">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/observationName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#00000000"
+                android:inputType="text"
+                android:paddingStart="20dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="10dp"
+                android:textColor="#000000"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutObservationDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edit_text"
+            android:hint="Date"
+            android:textColorHint="@color/black"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layoutObservationName"
+            app:startIconDrawable="@drawable/ic_calendar">
+
+            <EditText
+                android:id="@+id/observationDate"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#00000000"
+                android:clickable="false"
+                android:contextClickable="false"
+                android:cursorVisible="false"
+                android:defaultFocusHighlightEnabled="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:paddingStart="20dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="10dp"
+                android:textColor="#000000"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
+                tools:ignore="SpeakableTextPresentCheck" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutObservationComment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edit_text"
+            android:hint="Comment"
+            android:textColorHint="@color/black"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layoutObservationDate"
+            app:startIconDrawable="@drawable/ic_info">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/observationComment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#00000000"
+                android:inputType="textEmailAddress"
+                android:paddingStart="20dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="10dp"
+                android:textColor="#000000"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <ImageView
+            android:id="@+id/button_camera"
+            android:layout_width="50dp"
+            android:layout_height="45dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/layoutObservationComment"
+            app:layout_constraintEnd_toEndOf="@+id/layoutObservationComment"
+            app:layout_constraintTop_toTopOf="@+id/layoutObservationComment"
+            app:srcCompat="@drawable/camera_svgrepo_com" />
+
+        <ImageView
+            android:id="@+id/button_delete"
+            android:layout_width="50dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imagePreview"
+            app:layout_constraintEnd_toEndOf="@+id/button_camera"
+            app:layout_constraintStart_toStartOf="@+id/button_camera"
+            app:layout_constraintTop_toBottomOf="@+id/layoutObservationComment"
+            app:srcCompat="@drawable/delete_svg" />
+
+        <ImageView
+            android:id="@+id/imagePreview"
+            android:layout_width="163dp"
+            android:layout_height="185dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layoutObservationComment"
+            app:srcCompat="@drawable/image_preview" />
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/roundstyle"
+            android:text="Update"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imagePreview" />
+
+        <TextView
+            android:id="@+id/capturedImagePath"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imagePreview" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

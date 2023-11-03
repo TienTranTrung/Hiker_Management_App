@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Hike.AddHikeActivity"
+    android:background="@color/white"
+    android:padding="30dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#3fff"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Add New Hike"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="40dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/layoutHikeName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutHikeName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edit_text"
+            android:hint="Hike Name"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            android:textColorHint="@color/black"
+            app:hintTextColor="@color/colorPrimaryDark"
+            app:layout_constraintBottom_toTopOf="@+id/layoutHikeLocation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:startIconDrawable="@drawable/ic_travel">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/hikeName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:background="#00000000"
+                android:paddingStart="20dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="10dp"
+                android:textColor="#000000"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutHikeLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edit_text"
+            android:hint="Hike Location"
+            android:textColorHint="@color/black"
+            app:hintTextColor="@color/colorPrimaryDark"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layoutHikeName"
+            app:startIconDrawable="@drawable/ic_location">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/hikeLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:background="#00000000"
+                android:paddingStart="20dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="10dp"
+                android:textColor="#000000"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <ImageView
+            android:id="@+id/button_location"
+            android:layout_width="50dp"
+            android:layout_height="45dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/layoutHikeLocation"
+            app:layout_constraintEnd_toEndOf="@+id/layoutHikeLocation"
+            app:layout_constraintTop_toTopOf="@+id/layoutHikeLocation"
+            app:srcCompat="@drawable/location_svgrepo_com" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutDateTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edit_text"
+            android:hint="Date Time"
+            app:hintTextColor="@color/colorPrimaryDark"
+            android:textColorHint="@color/black"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layoutHikeLocation"
+            app:startIconDrawable="@drawable/ic_calendar">
+
+            <EditText
+                android:id="@+id/dateTime"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#00000000"
+                android:clickable="false"
+                android:contextClickable="false"
+                android:cursorVisible="false"
+                android:defaultFocusHighlightEnabled="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:paddingStart="20dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="10dp"
+                android:textColor="#000000"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <!-- Hike Length -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutHikeLength"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edit_text"
+            android:hint="Hike Length"
+            android:textColorHint="@color/black"
+            app:hintTextColor="@color/colorPrimaryDark"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:startIconDrawable="@drawable/ic_length"
+            app:layout_constraintTop_toBottomOf="@+id/layoutDateTime">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/hikeLength"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:background="#00000000"
+                android:paddingStart="20dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="10dp"
+                android:textColor="#000000"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Hike Difficulty -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutHikeDifficulty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edit_text"
+            android:hint="Hike Difficulty"
+            android:textColorHint="@color/black"
+            app:hintTextColor="@color/colorPrimaryDark"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:startIconDrawable="@drawable/ic_difficulty"
+            app:layout_constraintTop_toBottomOf="@+id/layoutHikeLength">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/hikeDifficulty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:background="#00000000"
+                android:paddingStart="20dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="10dp"
+                android:textColor="#000000"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Weather Condition -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutWeatherCondition"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edit_text"
+            android:hint="Weather Condition"
+            android:textColorHint="@color/black"
+            app:hintTextColor="@color/colorPrimaryDark"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:startIconDrawable="@drawable/ic_weather"
+            app:layout_constraintTop_toBottomOf="@+id/layoutHikeDifficulty">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/hikeWeather"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:background="#00000000"
+                android:paddingStart="20dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="10dp"
+                android:textColor="#000000"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Terrain Type -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutTerrainType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edit_text"
+            android:hint="Terrain Type"
+            android:textColorHint="@color/black"
+            app:hintTextColor="@color/colorPrimaryDark"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:startIconDrawable="@drawable/ic_terrain"
+            app:layout_constraintTop_toBottomOf="@+id/layoutWeatherCondition">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/terrainType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:background="#00000000"
+                android:paddingStart="20dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="10dp"
+                android:textColor="#000000"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edit_text"
+            android:hint="Description (Optional)"
+            android:textColorHint="@color/black"
+            app:hintTextColor="@color/colorPrimaryDark"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layoutTerrainType"
+            app:startIconDrawable="@drawable/ic_info">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:background="#00000000"
+                android:paddingStart="20dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="10dp"
+                android:textColor="#000000"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Parking Available"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/layoutDescription"
+            app:layout_constraintTop_toBottomOf="@+id/layoutDescription" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text">
+
+            <RadioButton
+                android:id="@+id/radioYes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:buttonTint="#0A47A1"
+                android:checked="true"
+                android:text="Yes"
+                android:textColor="#000000"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <RadioButton
+                android:id="@+id/radioNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:buttonTint="#0A47A1"
+                android:text="No"
+                android:textColor="#000000"
+                app:layout_constraintStart_toEndOf="@+id/radioYes"
+                app:layout_constraintTop_toBottomOf="@+id/text"
+                tools:ignore="TouchTargetSizeCheck" />
+
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/hikeBtnAdd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/roundstyle"
+            android:text="Add"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

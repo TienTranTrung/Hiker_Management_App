@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Observation.ObservationActivity">
+
+    <TextView
+        android:id="@+id/textObservation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Observation"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/detail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.388"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/add_button_observation"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/add_plus_svgrepo_com" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="340dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_observation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:paddingVertical="1dp" />
+
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@color/colorPrimary"
+        android:padding="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textObservation">
+
+        <ImageView
+            android:id="@+id/imgHike"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_hiker" />
+
+
+        <TextView
+            android:id="@+id/hikeName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/imgHike"
+            android:text="Hike Name 1"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/imgHike"
+            android:layout_alignStart="@+id/imgHike"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="8dp"
+            app:srcCompat="@drawable/location_svgrepo_com" />
+
+        <TextView
+            android:id="@+id/hikeLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/textView18"
+            android:layout_alignBottom="@+id/textView18"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="-1dp"
+            android:layout_toEndOf="@+id/textView18"
+            android:text="Location"
+            android:textColor="#FFFFFF"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/dateTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/textView10"
+            android:layout_alignBottom="@+id/textView10"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="-1dp"
+            android:layout_toEndOf="@+id/textView10"
+            android:text="18 Oct 2022"
+            android:textColor="#FFFFFF"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/hikeLength"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/textView11"
+            android:layout_alignBottom="@+id/textView11"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="-1dp"
+            android:layout_toEndOf="@+id/textView11"
+            android:text="20 km"
+            android:textColor="#FFFFFF"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/hikeParking"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/textView14"
+            android:layout_alignBottom="@+id/textView14"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="-1dp"
+            android:layout_toEndOf="@+id/textView14"
+            android:text="Yes / No"
+            android:textColor="#FFFFFF"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/imageView4"
+            android:layout_alignBottom="@+id/imageView4"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="0dp"
+            android:layout_toEndOf="@+id/imageView4"
+            android:text="Date:"
+            android:textColor="#000000"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/imageView3"
+
+            android:layout_alignBottom="@+id/imageView3"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="1dp"
+            android:layout_toEndOf="@+id/imageView3"
+            android:text="Location:"
+            android:textColor="#000000"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/imageView6"
+
+            android:layout_alignBottom="@+id/imageView6"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="2dp"
+
+            android:layout_toEndOf="@+id/imageView6"
+            android:text="Parking available:"
+            android:textColor="#000000"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/imageView5"
+
+            android:layout_alignBottom="@+id/imageView5"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="1dp"
+            android:layout_toEndOf="@+id/imageView5"
+            android:text="Length:"
+            android:textColor="#000000"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/imageView3"
+            android:layout_alignStart="@+id/imageView3"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="8dp"
+            app:srcCompat="@drawable/calendar_svg" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/imageView4"
+            android:layout_alignStart="@+id/imageView4"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="8dp"
+            app:srcCompat="@drawable/distance_svgrepo_com" />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/imageView5"
+            android:layout_alignStart="@+id/imageView5"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="8dp"
+            app:srcCompat="@drawable/parking_available" />
+
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/empty_imageview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:alpha="0.5"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/scrollView2"
+        app:srcCompat="@drawable/box_empty_svgrepo_com" />
+
+    <TextView
+        android:id="@+id/no_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:alpha="0.5"
+        android:text="Empty Observation !!!"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/empty_imageview" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

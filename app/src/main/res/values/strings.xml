@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Hiker Management App</string>
+    <string name="google_map_key">AIzaSyCk0UdoSmIHH63rLXT-hH3d0v9YgFm3CTE</string>
 </resources>

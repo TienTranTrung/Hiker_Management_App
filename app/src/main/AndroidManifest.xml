@@ -2,6 +2,31 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32"
+        tools:ignore="ScopedStorage" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+
+    <uses-feature
+        android:name="android.hardware.location.network"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.location.gps"
+        android:required="false" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -11,24 +36,70 @@
         android:roundIcon="@mipmap/ic_app_new_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HikerManagementApp"
-        tools:targetApi="31"
-        tools:ignore="ExtraText">
+        tools:ignore="ExtraText"
+        tools:targetApi="31">
+        <activity
+            android:name=".Utils.MapActivity"
+            android:exported="false" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.hikermanagementapp.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <activity
+            android:name=".Observation.DisplayDataActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Observation.ObservationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Observation.ObservationAdapter"
+            android:exported="false" />
+        <activity
+            android:name=".Observation.AddObservationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Observation.UpdateObservationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Hike.UpdateHikeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Hike.HikeAdapter"
+            android:exported="false" />
+        <activity
+            android:name=".Hike.AddHikeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Hike.HikeActivity"
+            android:exported="false" />
         <activity
             android:name=".Utils.SplashScreen"
-            android:screenOrientation="portrait"
             android:exported="true"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
             tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".Authentication.LoginActivity"
-            android:exported="false" />
+            android:exported="false" /> <!-- <meta-data -->
+        <!-- android:name="preloaded_fonts" -->
+        <!-- android:resource="@array/preloaded_fonts" /> -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_map_key" />
     </application>
 
 </manifest>
