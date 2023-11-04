@@ -48,6 +48,7 @@ import java.util.Objects;
 public class AddHikeActivity extends AppCompatActivity {
     // UI elements
     private static final int PLACE_PICKER_REQUEST = 1;
+    private static final int LOCATION_PICKER_REQUEST = 100;
     private String apiKey;
     TextInputEditText name, location, description, length, terrain, difficultyLevel, weatherCondition;
     EditText dateTime;
@@ -86,7 +87,7 @@ public class AddHikeActivity extends AppCompatActivity {
             Intent mapIntent = new Intent(AddHikeActivity.this, MapActivity.class);
             mapIntent.putExtra("activityClass", AddHikeActivity.class);
 //            mapIntent.putExtra("selectedHike", selectedHike);
-            startActivityForResult(mapIntent, 100);
+            startActivityForResult(mapIntent, LOCATION_PICKER_REQUEST);
         });
 
 
@@ -234,7 +235,7 @@ public class AddHikeActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 100) {
+        if (requestCode == LOCATION_PICKER_REQUEST) {
             if (resultCode == RESULT_OK) {
                 String selectedPlaceName = data.getStringExtra("selectedPlaceName");
                 location.setText(selectedPlaceName);

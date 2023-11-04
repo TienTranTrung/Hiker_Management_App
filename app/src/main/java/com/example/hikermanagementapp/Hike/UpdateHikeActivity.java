@@ -26,9 +26,11 @@ import com.example.hikermanagementapp.Database.Hike;
 import com.example.hikermanagementapp.Database.MyDbHelper;
 import com.example.hikermanagementapp.R;
 import com.example.hikermanagementapp.Utils.MapActivity;
+import com.google.android.gms.common.api.Status;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.widget.Autocomplete;
+import com.google.android.libraries.places.widget.AutocompleteActivity;
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -41,6 +43,7 @@ import java.util.Objects;
 
 public class UpdateHikeActivity extends AppCompatActivity {
     private static final int PLACE_PICKER_REQUEST = 1;
+    private static final int LOCATION_PICKER_REQUEST = 100;
     private String apiKey;
     // UI elements
     TextInputEditText name, location, description, length, terrain, difficultyLevel, weatherCondition;
@@ -76,8 +79,8 @@ public class UpdateHikeActivity extends AppCompatActivity {
             // Start the MapActivity
             Intent mapIntent = new Intent(UpdateHikeActivity.this, MapActivity.class);
             mapIntent.putExtra("activityClass", UpdateHikeActivity.class);
-            mapIntent.putExtra("selectedHike", selectedHike);
-            startActivity(mapIntent);
+//            mapIntent.putExtra("selectedHike", selectedHike);
+            startActivityForResult(mapIntent, LOCATION_PICKER_REQUEST);
         });
 
 //        buttonLocation.setOnClickListener(v -> {
@@ -204,7 +207,21 @@ public class UpdateHikeActivity extends AppCompatActivity {
         // finally change the color
         window.setStatusBarColor(ContextCompat.getColor(this, R.color.black));
     }
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == LOCATION_PICKER_REQUEST) {
+            if (resultCode == RESULT_OK) {
+                String selectedPlaceName = data.getStringExtra("selectedPlaceName");
+                location.setText(selectedPlaceName);
+            } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
+                // Handle the error.
+                Log.i(TAG, "Error to get user location");
+            } else if (resultCode == RESULT_CANCELED) {
+                Log.i(TAG, "User Cancel");
+            }
+        }
+    }
     private void getAndDisplayInfo() {
         // Display the selected hike's information
         Intent intent = getIntent();
@@ -224,7 +241,6 @@ public class UpdateHikeActivity extends AppCompatActivity {
             no.setChecked(true);
         }
         Objects.requireNonNull(getSupportActionBar()).setTitle("Update \"" + selectedHike.getName() + "\"");
-
 
     }
 }

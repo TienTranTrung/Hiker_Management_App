@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Hiker Management App</string>
     <string name="google_map_key">AIzaSyCDNw9RuSELsRuA4bLiIaVMtbMypaf0KCU</string>
+    <string-array name="difficulty_array">
+        <item>Easy</item>
+        <item>Medium</item>
+        <item>Hard</item>
+    </string-array>
 </resources>
