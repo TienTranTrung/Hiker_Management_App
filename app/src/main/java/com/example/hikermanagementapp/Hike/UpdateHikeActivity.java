@@ -1,17 +1,23 @@
 package com.example.hikermanagementapp.Hike;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -19,14 +25,23 @@ import android.widget.Toast;
 import com.example.hikermanagementapp.Database.Hike;
 import com.example.hikermanagementapp.Database.MyDbHelper;
 import com.example.hikermanagementapp.R;
+import com.example.hikermanagementapp.Utils.MapActivity;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.widget.Autocomplete;
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
 public class UpdateHikeActivity extends AppCompatActivity {
+    private static final int PLACE_PICKER_REQUEST = 1;
+    private String apiKey;
     // UI elements
     TextInputEditText name, location, description, length, terrain, difficultyLevel, weatherCondition;
     EditText dateTime;
@@ -45,7 +60,32 @@ public class UpdateHikeActivity extends AppCompatActivity {
         setStatusColor();
         // find all elements
         findAllElements();
+        ImageView buttonLocation = findViewById(R.id.button_location);
+        try {
+            ApplicationInfo app = getPackageManager().getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA);
+            Bundle bundle = app.metaData;
+            apiKey = bundle.getString("com.google.android.geo.API_KEY");
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.e(TAG, "Failed to load meta-data, NameNotFound: " + e.getMessage());
+        } catch (NullPointerException e) {
+            Log.e(TAG, "Failed to load meta-data, NullPointer: " + e.getMessage());
+        }
+        // Initialize the SDK
+        Places.initialize(getApplicationContext(), apiKey);
+        buttonLocation.setOnClickListener(v -> {
+            // Start the MapActivity
+            Intent mapIntent = new Intent(UpdateHikeActivity.this, MapActivity.class);
+            mapIntent.putExtra("activityClass", UpdateHikeActivity.class);
+            mapIntent.putExtra("selectedHike", selectedHike);
+            startActivity(mapIntent);
+        });
 
+//        buttonLocation.setOnClickListener(v -> {
+//            // Start the Place Picker activity
+//            List<Place.Field> fields = Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG);
+//            Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.FULLSCREEN, fields).build(UpdateHikeActivity.this);
+//            startActivityForResult(intent, PLACE_PICKER_REQUEST);
+//        });
         getAndDisplayInfo(); // get selected hike info and display it
         // set date picker
         dateTimePicker();

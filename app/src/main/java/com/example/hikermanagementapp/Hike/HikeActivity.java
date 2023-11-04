@@ -19,7 +19,9 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+
 import androidx.appcompat.widget.SearchView;
+
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -102,7 +104,7 @@ public class HikeActivity extends AppCompatActivity {
     private void whenClickAdd() {
         btnAdd.setOnClickListener(view -> {
             Intent intent = new Intent(HikeActivity.this, AddHikeActivity.class);
-            startActivity(intent);
+            startActivityForResult(intent, 1); // start for result
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         });
     }
@@ -131,7 +133,7 @@ public class HikeActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1) {
+        if (requestCode == 1 && resultCode == RESULT_OK) {
             recreate(); // refresh activity
         }
         if (requestCode == 100 && resultCode == RESULT_OK) {

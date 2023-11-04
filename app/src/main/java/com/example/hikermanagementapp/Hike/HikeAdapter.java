@@ -62,7 +62,7 @@ public class HikeAdapter extends RecyclerView.Adapter<HikeAdapter.MyViewHolder> 
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
         Hike hike = hikes.get(position);
         String name = hike.getName();
-        String des = hike.getDescription();
+        String location = hike.getLocation();
         String date = hike.getDate();
         String length = hike.getLength();
         String difficulty = hike.getDifficulty();
@@ -76,7 +76,7 @@ public class HikeAdapter extends RecyclerView.Adapter<HikeAdapter.MyViewHolder> 
 
         // set value to form
         holder.hikeName.setText(name);
-        holder.hikeLocation.setText(des);
+        holder.hikeLocation.setText(location);
         holder.hikeDate.setText(date);
         holder.hikeLength.setText(length);
         holder.hikeDifficulty.setText(difficulty);

@@ -27,7 +27,9 @@ import com.example.hikermanagementapp.Authentication.LoginActivity;
 import com.example.hikermanagementapp.Database.Hike;
 import com.example.hikermanagementapp.Database.MyDbHelper;
 import com.example.hikermanagementapp.R;
+import com.example.hikermanagementapp.Utils.MapActivity;
 import com.google.android.gms.common.api.Status;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.widget.Autocomplete;
@@ -79,18 +81,21 @@ public class AddHikeActivity extends AppCompatActivity {
         }
         // Initialize the SDK
         Places.initialize(getApplicationContext(), apiKey);
-//        buttonLocation.setOnClickListener(v -> {
-//            // Start the MapActivity
-//            Intent mapIntent = new Intent(AddHikeActivity.this, MapActivity.class);
-//            startActivity(mapIntent);
-//        });
-
         buttonLocation.setOnClickListener(v -> {
-            // Start the Place Picker activity
-            List<Place.Field> fields = Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG);
-            Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.FULLSCREEN, fields).build(AddHikeActivity.this);
-            startActivityForResult(intent, PLACE_PICKER_REQUEST);
+            // Start the MapActivity
+            Intent mapIntent = new Intent(AddHikeActivity.this, MapActivity.class);
+            mapIntent.putExtra("activityClass", AddHikeActivity.class);
+//            mapIntent.putExtra("selectedHike", selectedHike);
+            startActivityForResult(mapIntent, 100);
         });
+
+
+//        buttonLocation.setOnClickListener(v -> {
+//            // Start the Place Picker activity
+//            List<Place.Field> fields = Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG);
+//            Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.FULLSCREEN, fields).build(AddHikeActivity.this);
+//            startActivityForResult(intent, PLACE_PICKER_REQUEST);
+//        });
     }
 
     private void whenClickAdd() {
@@ -219,6 +224,7 @@ public class AddHikeActivity extends AppCompatActivity {
 
         if (result != -1) {
             Toast.makeText(this, "Hike added successfully!", Toast.LENGTH_SHORT).show();
+            setResult(RESULT_OK); // set the result code
             finish(); // close this activity
         } else {
             Toast.makeText(this, "Failed to add hike", Toast.LENGTH_SHORT).show();
@@ -228,7 +234,17 @@ public class AddHikeActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == PLACE_PICKER_REQUEST) {
+        if (requestCode == 100) {
+            if (resultCode == RESULT_OK) {
+                String selectedPlaceName = data.getStringExtra("selectedPlaceName");
+                location.setText(selectedPlaceName);
+            } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
+                // Handle the error.
+                Log.i(TAG, "Error to get user location");
+            } else if (resultCode == RESULT_CANCELED) {
+                Log.i(TAG, "User Cancel");
+            }
+        } else if (requestCode == PLACE_PICKER_REQUEST) {
             if (resultCode == RESULT_OK) {
                 Place place = Autocomplete.getPlaceFromIntent(data);
                 location.setText(place.getName());
