@@ -106,7 +106,7 @@ public class HikeAdapter extends RecyclerView.Adapter<HikeAdapter.MyViewHolder> 
         builder.setPositiveButton("Yes", (dialogInterface, i) -> {
             MyDbHelper myDB = new MyDbHelper(context);
             boolean result = myDB.deleteHike(id);
-            if (result) {
+            if (!result) {
                 Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(context, "Delete Successfully!", Toast.LENGTH_SHORT).show();
