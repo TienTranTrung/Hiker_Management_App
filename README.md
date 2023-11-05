@@ -33,7 +33,12 @@ https://youtu.be/J1roovxZba0
 ## Screenshots
 
 ![Home Page](https://github.com/TienTranTrung/Hiker_Management_App/assets/133075235/424fd405-b75a-4ffd-9007-520299197819)
-!![image](https://github.com/TienTranTrung/Hiker_Management_App/assets/133075235/cc65a655-bca6-4db2-9978-d08d9160d134)
+
+![image](https://github.com/TienTranTrung/Hiker_Management_App/assets/133075235/cc65a655-bca6-4db2-9978-d08d9160d134)
+
+![image](https://github.com/TienTranTrung/Hiker_Management_App/assets/133075235/7a760387-15f3-4a1a-8531-f612b06d1c53)
+
+![image](https://github.com/TienTranTrung/Hiker_Management_App/assets/133075235/cc5480f7-32dd-4de2-80b4-35d3642037a7)
 
 ## Authors
 
